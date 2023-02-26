@@ -1,0 +1,17 @@
+.button-outline{
+    border: 1px solid rgb(100, 100, 100);
+    color: rgb(100, 100, 100);
+}
+
+.button-outline:hover{
+    border: 1px solid black;
+    color: black;
+}
+
+.demo {
+    width: 100%
+}
+
+
+
+
