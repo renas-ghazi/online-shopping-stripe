@@ -5,21 +5,14 @@ use App\Http\Components\users\Home;
 use App\Http\Components\users\Login;
 use App\Http\Components\users\Register;
 use App\Http\Components\users\Product;
+use App\Http\Components\users\Orders;
+use App\Http\Components\users\Invoice;
 use App\Http\Components\admin\Login as AdLogin;
 use App\Http\Components\admin\Dashboard;
 use App\Http\Components\admin\Addproduct;
 use App\Http\Components\admin\EditProduct;
+use App\Http\Controllers\Payment;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 
 
@@ -32,6 +25,10 @@ Route::middleware(['guest:web'])->group(function () {
 route::get('/product/{product}' , Product::class) -> name('product');
 
 Route::middleware(['auth:web'])->group(function () {
+    route::post('/charge' , [Payment::class , 'charge']) -> name('charge');
+    route::get('/orders' , Orders::class) -> name('order');
+    route::get('/invoice/{order_id}' , Invoice::class) -> name('invoice');
+    route::get('/payment' , [Payment::class , 'index']) -> name('payment');
 
 });
 

@@ -2,6 +2,43 @@
     <div class="container">
         @livewire('users.navbar')
     </div>
+    <div class="container">
+        <input type="search" wire:model.debounce.500ms='search' class="form-control mb-3" placeholder="Search Product">
+        @if ( $search )
+        @if (count($getData) > 0)
+
+        <table class="table table-active">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Image</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($getData as $getItem)
+                <tr>
+                    <td>{{ $getItem->name }}</td>
+                    <td>{{ $getItem->price }}</td>
+                    <td>
+                        <img style="width: 100px" src="{{ asset('product/'.$getItem->image) }}">
+                    </td>
+                    <td>
+                        <a class="btn btn-success" href="{{ route('product',$getItem->id) }}">
+                            Go To Product
+                        </a>
+                    </td>
+                </tr>
+
+                @endforeach
+            </tbody>
+        </table>
+        @else
+        no result
+        @endif
+        @endif
+    </div>
         <div class="container">
             <section class="hero pb-3 bg-cover bg-center d-flex align-items-center" style="background-image: url({{ asset('users/images/watch-cover.jpg)') }}; background-repeat: no-repeat;
             background-size: 100% 100%; height: 60vh;">
@@ -57,9 +94,9 @@
                 <div class="py-2">
                     <div class="row row-cols-1">
                         @foreach ($products as $pro)
-                        <div class="col-md-12 col-lg-4 mb-4 mb-lg-0">
+                        <div class="col-md-12 col-lg-4 mt-4">
                             <div class="card p-2"><a href="{{ route('product' , $pro->id) }}">
-                                <img src="{{ asset('product/'.$pro->image) }}" class="card-img-top" alt="img" /></a>
+                                <img style="height: 300px" src="{{ asset('product/'.$pro->image) }}" class="card-img-top" alt="img" /></a>
 
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between">
@@ -74,12 +111,6 @@
                             </div>
                         </div>
                         @endforeach
-
-
-
-
-
-
                     </div>
                 </div>
             </section>

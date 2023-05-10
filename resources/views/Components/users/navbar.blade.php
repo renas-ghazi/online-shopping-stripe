@@ -4,7 +4,7 @@
             <div class="container px-lg-3">
                 <nav class="navbar navbar-expand-lg navbar-light py-3 ">
                     <a class="navbar-brand" href="{{ route('home') }}">
-                        <span class="fw-bold text-uppercase text-dark">Online Shop</span>
+                        <span class="fw-bold text-uppercase text-dark">Online Shoping</span>
                     </a>
                     <button class="navbar-toggler navbar-toggler-end" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -44,9 +44,13 @@
                             </li>
                         </ul>
                         @else
-                        <button wire:click='logout' class="btn btn-danger">
+                        <button wire:click='logout' class="btn btn-danger m-1">
                             Logout
                         </button>
+                        <a href="{{ route('order') }}" class="btn btn-success">
+                            My Order
+                        </a>
+                            @livewire('users.cart')
                         @endif
                     </div>
                 </nav>
